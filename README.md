@@ -1,5 +1,6 @@
-Not Testet
-24V !
+Not Testet!
+
+Used: 24V
 
 Compatible with:
 - Tronxy X5S
