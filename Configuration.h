@@ -48,7 +48,8 @@
 //#define SKR_1.4
 //#define SKR_1.4_Turbo
 //#define SKR_PRO_V1_1       
-//#define SKR_PRO_V1_2      
+//#define SKR_PRO_V1_2   
+//#define SKR_E3_TURBO   
 
 
 //#define SKR_MINI_V1_1     //Doesnt work 
@@ -58,7 +59,6 @@
 //#define SKR_MINI_MZ_V1_0  //Doesnt work   
 //#define SKR_E3_DIP        //Doesnt work 
 //#define SKR_CR6           //Doesnt work 
-//#define SKR_E3_TURBO      //Doesnt work 
 
 //Stepper
 //#define S_TMC2208
@@ -188,7 +188,7 @@
 
 #elif ENABLED(SKR_E3_TURBO)
   #define MOTHERBOARD BOARD_BTT_SKR_E3_TURBO 
-  
+  #define S_TMC2209
 #endif
 
 
