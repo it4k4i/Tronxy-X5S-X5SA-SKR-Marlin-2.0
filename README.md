@@ -1,4 +1,4 @@
-Not Testet!
+Not Testet, Compiled or Buid!
 
 Used: 24V
 
@@ -17,6 +17,20 @@ Compatible Boards:
 - SKR PRO V1.1       
 - SKR PRO V1.2 
 - SKR E3 Turbo
+- SKR_MINI_V1_1  
+- SKR_MINI_E3_V1_2  
+- SKR_MINI_E3_V2_0  
+- SKR_MINI_MZ_V1_0  
+- SKR_E3_DIP       
+- SKR_CR6     
+
+Dual Z, Tripple Z
+2 Extruder, 3 Extruder (both in 1 Hotend)
+If you use 6 Stepper Driver Board and Dual Z + 2 Extruder:
+E1 Slot = 2. Extruder
+E2 Slot = Z2
+(Should work not tested)
+
 
 Stepper: 
 - TMC2208 (Uart)
@@ -41,11 +55,6 @@ Absolutely testing:
 
 
 
-Planed Boards:
-- SKR_MINI_V1_1   
+Planed Boards: 
 - SKR_MINI_E3_V1_0   
-- SKR_MINI_E3_V1_2  
-- SKR_MINI_E3_V2_0  
-- SKR_MINI_MZ_V1_0  
-- SKR_E3_DIP       
-- SKR_CR6          
+     
