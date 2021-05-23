@@ -10,12 +10,13 @@ Compatible with:
 - Tronxy X5SA-600
 
 Compatible Boards:
-- SKR_1.1
-- SKR_1.3
-- SKR_1.4
-- SKR_1.4_Turbo
-- SKR_PRO_V1_1       
-- SKR_PRO_V1_2 
+- SKR 1.1
+- SKR 1.3
+- SKR 1.4
+- SKR 1.4 Turbo
+- SKR PRO V1.1       
+- SKR PRO V1.2 
+- SKR E3 Turbo
 
 Stepper: 
 - TMC2208 (Uart)
@@ -48,4 +49,3 @@ Planed Boards:
 - SKR_MINI_MZ_V1_0  
 - SKR_E3_DIP       
 - SKR_CR6          
-- SKR_E3_TURBO  
