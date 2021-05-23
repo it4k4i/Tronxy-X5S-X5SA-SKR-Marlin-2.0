@@ -31,12 +31,18 @@
 //#define 500_Version
 //#define 600_Version
 
-//#define Dual_Z
+//Change Configuration_adv.h from the correct Folder if you use this
+//#define Dual_Z     
 //#define Triple_Z
 
-//Multi Extruder (one Hotend) doesnt work
-//#define 2_Extruder   //Doesnt work 
-//#define 3_Extruder   //Doesnt work 
+//Not Sure if Dual_Z + 2_Extruder work on a Board with 6 Stepper Driver
+//E1 Slot = 2 Extruder
+//E2 Slot = Dual Z
+
+//Multi Extruder (one Hotend)
+//#define 2_Extruder  
+//#define 3_Extruder
+
 
 //Auto-Level
 //#define Tronxy_ABL
@@ -49,20 +55,21 @@
 //#define SKR_1.4_Turbo
 //#define SKR_PRO_V1_1       
 //#define SKR_PRO_V1_2   
+//#define SKR_MINI_V1_1
+//#define SKR_E3_DIP   
 //#define SKR_E3_TURBO   
+//#define SKR_MINI_E3_V1_2 
+//#define SKR_MINI_E3_V2_0  
+//#define SKR_MINI_MZ_V1_0    
+//#define SKR_CR6
 
 
-//#define SKR_MINI_V1_1     //Doesnt work 
+
 //#define SKR_MINI_E3_V1_0  //Doesnt work 
-//#define SKR_MINI_E3_V1_2  //Doesnt work 
-//#define SKR_MINI_E3_V2_0  //Doesnt work  
-//#define SKR_MINI_MZ_V1_0  //Doesnt work   
-//#define SKR_E3_DIP        //Doesnt work 
-//#define SKR_CR6           //Doesnt work 
 
-//Stepper
-//#define S_TMC2208
-//#define S_TMC2209
+//Stepper (only when Board has Stepper Driver like SKR 1.3)
+//#define S_TMC2208 //only TMC2208
+//#define S_TMC2209 //only TMC2209
 
 
 #if ENABLED(X5S)
@@ -143,80 +150,123 @@
 
 #if ENABLED(SKR_1.1)
   #define MOTHERBOARD BOARD_BTT_SKR_V1_1 
-  #define Custom_Stepper
+  #define 5_Stepper
 
 #elif ENABLED(SKR_1.3)
   #define MOTHERBOARD BOARD_BTT_SKR_V1_3 
-  #define Custom_Stepper
+  #define 5_Stepper
 
 #elif ENABLED(SKR_1.4)
   #define MOTHERBOARD BOARD_BTT_SKR_V1_4
-  #define Custom_Stepper
+  #define 5_Stepper
 
 #elif ENABLED(SKR_1.4_Turbo)
   #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
-  #define Custom_Stepper  
+  #define 5_Stepper  
 
 #elif ENABLED(SKR_PRO_V1_1)
   #define MOTHERBOARD BOARD_BTT_SKR_PRO_V1_1
-  #define Custom_Stepper
+  #define 6_Stepper
 
 #elif ENABLED(SKR_PRO_V1_2)
   #define MOTHERBOARD BOARD_BTT_SKR_PRO_V1_2
-  #define Custom_Stepper
+  #define 6_Stepper
 
 #elif ENABLED(SKR_MINI_V1_1)
   #define MOTHERBOARD BOARD_BTT_SKR_MINI_V1_1
+  #define 4_Stepper
 
 #elif ENABLED(SKR_MINI_E3_V1_0)
   #define MOTHERBOARD BOARD_BTT_SKR_MINI_E3_V1_0 
 
+
 #elif ENABLED(SKR_MINI_E3_V1_2)
   #define MOTHERBOARD BOARD_BTT_SKR_MINI_E3_V1_2
+  #define 4_Stepper
+  #define S_TMC2209  
   
 #elif ENABLED(SKR_MINI_E3_V2_0)
   #define MOTHERBOARD BOARD_BTT_SKR_MINI_E3_V2_0
+  #define 4_Stepper
+  #define S_TMC2209
 
 #elif ENABLED(SKR_MINI_MZ_V1_0)
   #define MOTHERBOARD BOARD_BTT_SKR_MINI_MZ_V1_0
-
+  #define 4_Stepper
+  #define S_TMC2209
+  
 #elif ENABLED(SKR_E3_DIP)
   #define MOTHERBOARD BOARD_BTT_SKR_E3_DIP 
+  #define 4_Stepper
   
 #elif ENABLED(SKR_CR6)
   #define MOTHERBOARD BOARD_BTT_SKR_CR6
-
+  #define 4_Stepper
+  #define S_TMC2209
+  
 #elif ENABLED(SKR_E3_TURBO)
   #define MOTHERBOARD BOARD_BTT_SKR_E3_TURBO 
+  #define 5_Stepper
   #define S_TMC2209
 #endif
 
 
-#if ENABLED(Custom_Stepper)
-  #if ENABLED(S_TMC2208)
-    #define X_DRIVER_TYPE TMC2208
-    #define Y_DRIVER_TYPE TMC2208
-    #define Z_DRIVER_TYPE TMC2208
-    #define E0_DRIVER_TYPE TMC2208
+
+#if ENABLED(S_TMC2208)
+  #define X_DRIVER_TYPE TMC2208
+  #define Y_DRIVER_TYPE TMC2208
+  #define Z_DRIVER_TYPE TMC2208
+  #define E0_DRIVER_TYPE TMC2208
+  
+  #if ENABLED((5_Stepper))
     #if ENABLED(Dual_Z)
 	  #define Z2_DRIVER_TYPE TMC2208
-    #elif ENABLED(Triple_Z)
+	#elif ENABLED(2_Extruder)
+	  #define E1_DRIVER_TYPE TMC2208
+	#endif
+  
+  #elif ENABLED(6_Stepper)
+    #if ENABLED (Triple_Z)
 	  #define Z2_DRIVER_TYPE TMC2208
 	  #define Z3_DRIVER_TYPE TMC2208
-    #endif
+	#elif ENABLED(3_Extruder)
+	  #define E1_DRIVER_TYPE TMC2208
+	  #define E2_DRIVER_TYPE TMC2208
+	#elif ENABLED(Dual_Z)
+	  #if ENABLED(2_Extruder)
+	    #define E1_DRIVER_TYPE TMC2208
+	    #define Z3_DRIVER_TYPE TMC2208
+	  #endif 
+	#endif
 
-  #elif ENABLED(S_TMC2209)
-    #define X_DRIVER_TYPE TMC2209
-    #define Y_DRIVER_TYPE TMC2209
-    #define Z_DRIVER_TYPE TMC2209
-    #define E0_DRIVER_TYPE TMC2209
+
+#elif ENABLED(S_TMC2209)
+  #define X_DRIVER_TYPE TMC2209
+  #define Y_DRIVER_TYPE TMC2209
+  #define Z_DRIVER_TYPE TMC2209
+  #define E0_DRIVER_TYPE TMC2209
+  
+  #if ENABLED((5_Stepper))
     #if ENABLED(Dual_Z)
 	  #define Z2_DRIVER_TYPE TMC2209
-    #elif ENABLED(Triple_Z)
+	#elif ENABLED(2_Extruder)
+	  #define E1_DRIVER_TYPE TMC2209
+	#endif
+  
+  #elif ENABLED(6_Stepper)
+    #if ENABLED (Triple_Z)
 	  #define Z2_DRIVER_TYPE TMC2209
 	  #define Z3_DRIVER_TYPE TMC2209
-    #endif
-  #endif
+	#elif ENABLED(2_Extruder)
+	  #define E1_DRIVER_TYPE TMC2209
+	  #define E2_DRIVER_TYPE TMC2209
+	#elif ENABLED(Dual_Z)
+	  #if ENABLED(2_Extruder)
+	    #define E1_DRIVER_TYPE TMC2209
+	    #define Z3_DRIVER_TYPE TMC2209
+	  #endif 
+	#endif
+
 #endif
 
 
