@@ -218,7 +218,7 @@
   #define Z_DRIVER_TYPE TMC2208
   #define E0_DRIVER_TYPE TMC2208
   
-  #if ENABLED((5_Stepper))
+  #if ENABLED(5_Stepper)
     #if ENABLED(Dual_Z)
 	  #define Z2_DRIVER_TYPE TMC2208
 	#elif ENABLED(2_Extruder)
@@ -246,7 +246,7 @@
   #define Z_DRIVER_TYPE TMC2209
   #define E0_DRIVER_TYPE TMC2209
   
-  #if ENABLED((5_Stepper))
+  #if ENABLED(5_Stepper)
     #if ENABLED(Dual_Z)
 	  #define Z2_DRIVER_TYPE TMC2209
 	#elif ENABLED(2_Extruder)
